@@ -14,8 +14,22 @@ import Parse
 class ViewController: UIViewController, PFLogInViewControllerDelegate {
   
     
+    @IBOutlet weak var firstname: UITextField!
     @IBOutlet weak var contactNumber: UITextField!
-    @IBOutlet weak var usrname: UITextField!
+
+    @IBOutlet weak var lastname: UITextField!
+    
+    @IBOutlet weak var address: UITextField!
+    
+    
+    @IBOutlet weak var zipcode: UITextField!
+    
+    @IBOutlet weak var state: UITextField!
+    
+    @IBOutlet weak var emercontactName: UITextField!
+    
+    @IBOutlet weak var emercontactNumber: UITextField!
+    
     
     var toMain = "toMain"
     
@@ -30,29 +44,34 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
     @IBAction func saveandcontinue(sender: AnyObject) {
         
         // Checking if user fields are empty.
-        if( usrname.text != "" && contactNumber.text != ""){
+        if( firstname.text != "" && lastname.text != "" && contactNumber.text != "" && address.text != "" && zipcode.text != "" && state.text != "" && emercontactName.text != "" && emercontactNumber.text != "" && contactNumber.text != ""){
             
             let newuser = PFUser()
            
-            newuser["username"] = usrname.text
+            newuser["username"] = firstname.text
+            newuser["lastname"] = lastname.text
             newuser["contactNumber"] = Int(contactNumber.text!)
+            newuser["address"] = address.text
+            newuser["zipcode"] = Int(zipcode.text!)
+            newuser["state"] = state.text
+            newuser["emercontactName"] = emercontactName.text
+            newuser["emercontactNumber"] = Int(emercontactNumber.text!)
             newuser["password"] = contactNumber.text
             
             newuser.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
                 if (succeeded) {
                     //if succesful move to next segue
-                    self.performSegueWithIdentifier(self.toMain, sender: nil)
+            self.performSegueWithIdentifier(self.toMain, sender: nil)
                     
                 } else {
-                    //self.displayAlert("Error!", body: "Registration Failed")
+                    self.displayAlert("Error!", body: "Registration Failed")
                     
                 }
             }
-
-              newuser.saveInBackground()
 
         }
         else
@@ -61,8 +80,6 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate {
         }
 
     }
-    
-    
    
     
     //Alert function for pop up alerts.
@@ -72,11 +89,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate {
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true) { }
         
-        
     }
-    
-
-
-
+ 
 }
 

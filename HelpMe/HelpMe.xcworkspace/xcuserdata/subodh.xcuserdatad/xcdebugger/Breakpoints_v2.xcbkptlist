@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProfileViewController.swift"
-            timestampString = "468096439.765639"
+            timestampString = "468202389.192234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104">
+            startingLineNumber = "117"
+            endingLineNumber = "117">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

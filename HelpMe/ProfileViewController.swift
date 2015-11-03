@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
     
     var currentLocation:PFGeoPoint!
     var currentUser:PFUser = PFUser.currentUser()!
+
     
     let locationManager = CLLocationManager()
     
@@ -36,6 +37,9 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
             startLocationManager()
             
          //handle mobile number as optional chaining case
+            
+
+            
             if let phoneNumber = PFUser.currentUser()?["contactNumber"] as? Int {
                 
                 var strphone = String(phoneNumber)
@@ -66,20 +70,29 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized)
         {
             
-            print(locationManager.location!.coordinate.latitude)
-            print(locationManager.location!.coordinate.longitude)
+          //  print(locationManager.location!.coordinate.latitude)
+           // print(locationManager.location!.coordinate.longitude)
             
             locationtext.text = "Your Location is Latitude: \(locationManager.location!.coordinate.latitude), Longitude:  \(locationManager.location!.coordinate.longitude)"
 
             
         }  else {
             //labelLatitude.text = "Location not authorized"
-            locationtext.text = "Please Wait till we get your location!Error "
+            locationtext.text = "Please Wait till we get your location"
         }
     }
 
     
 
+    @IBAction func logout(sender: AnyObject) {
+        
+            
+            PFUser.logOutInBackgroundWithBlock({(error) -> Void in
+                print("error in logging out")
+            })
+            
+            exit(0)
+    }
     
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
