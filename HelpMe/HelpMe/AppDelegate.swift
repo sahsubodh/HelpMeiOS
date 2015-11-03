@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import ParseTwitterUtils
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

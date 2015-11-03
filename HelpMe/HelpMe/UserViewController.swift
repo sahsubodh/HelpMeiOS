@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import ParseTwitterUtils
-
 
 class UserViewController: UIViewController {
   
